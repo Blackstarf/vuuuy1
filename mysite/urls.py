@@ -18,11 +18,11 @@ from django.urls import path
 
 from django.contrib import admin
 from django.urls import path, include
-from lms.urls import curator_router
+from lms.urls import  lms_router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('lms/',
-         include(curator_router.urls)),
+         include(lms_router.urls)),
 ]

@@ -1,8 +1,14 @@
-from django.shortcuts import render
 from rest_framework import viewsets
-from lms.models import Curator
-from lms.serializers import CuratorSerializer
 
+from lms.models import Curator, Direction, Group, Discipline, Student
+from lms.permissions import IsAdminOrReadOnly
+from lms.serializers import (
+    CuratorSerializer,
+    DirectionSerializer,
+    GroupSerializer,
+    DisciplineSerializer,
+    StudentSerializer,
+)
 
 class CuratorViewSet(viewsets.ModelViewSet):
     queryset = Curator.objects
@@ -10,4 +16,31 @@ class CuratorViewSet(viewsets.ModelViewSet):
     queryset = queryset.order_by('id')
     serializer_class = CuratorSerializer
 
-# Create your views here.
+
+class DirectionViewSet(viewsets.ModelViewSet):
+    queryset = Direction.objects
+    queryset = queryset.all()
+    queryset = queryset.order_by('id')
+    serializer_class = DirectionSerializer
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects
+    queryset = queryset.all()
+    queryset = queryset.order_by('id')
+    serializer_class = GroupSerializer
+
+
+class DisciplineViewSet(viewsets.ModelViewSet):
+    queryset = Discipline.objects
+    queryset = queryset.all()
+    queryset = queryset.order_by('id')
+    serializer_class = DisciplineSerializer
+
+
+class StudentViewSet(viewsets.ModelViewSet):
+    queryset = Student.objects
+    queryset = queryset.all()
+    queryset = queryset.order_by('id')
+    serializer_class = StudentSerializer
+    permission_classes = [IsAdminOrReadOnly]
